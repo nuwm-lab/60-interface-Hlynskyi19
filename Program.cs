@@ -3,8 +3,14 @@ using System.Text;
 
 namespace LabWork
 {
-    // Абстрактний клас
-    abstract class Shape
+    interface IVolumeCalculable
+    {
+        double CalculateVolume();
+        void DisplayData();
+    }
+
+    // Абстрактний клас Shape, який реалізує інтерфейс IVolumeCalculable
+    abstract class Shape : IVolumeCalculable
     {
         public abstract void InputData();
         public abstract void DisplayData();
@@ -16,7 +22,6 @@ namespace LabWork
         }
     }
 
-    // Клас Celipsoid, успадковує Shape
     class Celipsoid : Shape
     {
         public int a1, a2, a3;
@@ -59,7 +64,6 @@ namespace LabWork
         }
     }
 
-    // Клас Cball, успадковує Shape
     class Cball : Shape
     {
         public int Radius { get; private set; }
@@ -124,7 +128,7 @@ namespace LabWork
                     else
                         throw new ArgumentException("Невірний вибір!");
 
-                    shape.InputData();
+                    shape.InputData();  // Виклик InputData для відповідного класу
                     shape.DisplayData();
                     shape.CalculateVolume();
                 }
